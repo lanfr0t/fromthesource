@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Night in Milan — At the Table</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1410;
+      --warm-black: #231f1a;
+      --parchment: #f7f2eb;
+      --cream: #faf7f2;
+      --terracotta: #b5522b;
+      --gold: #c9973a;
+      --gold-light: #e8c876;
+      --muted: #7a6e64;
+      --border: #e0d5c5;
+      --wine-red: #7a2535;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* Header / Masthead */
+    .masthead {
+      background: var(--warm-black);
+      padding: 18px 0 14px;
+      text-align: center;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .masthead-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .masthead-sub {
+      font-family: 'Crimson Pro', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: var(--warm-black);
+      overflow: hidden;
+      padding: 64px 24px 56px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 30% 50%, rgba(181, 82, 43, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(122, 37, 53, 0.12) 0%, transparent 60%);
+    }
+
+    .hero-issue {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 7vw, 68px);
+      font-weight: 700;
+      color: var(--parchment);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(15px, 2.5vw, 20px);
+      color: var(--muted);
+      max-width: 580px;
+      margin: 18px auto 0;
+      line-height: 1.5;
+    }
+
+    .hero-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 36px auto 0;
+      max-width: 300px;
+    }
+
+    .hero-divider::before,
+    .hero-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    .hero-divider span {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    /* Photo Block */
+    .photo-block {
+      background: var(--warm-black);
+      padding: 0 0 48px;
+      text-align: center;
+    }
+
+    .photo-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .photo-frame {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(201, 151, 58, 0.3);
+    }
+
+    .photo-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* Meta bar */
+    .meta-bar {
+      background: var(--parchment);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-item strong {
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    /* Article Body */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    .lead-paragraph {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--warm-black);
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article p {
+      margin-bottom: 24px;
+      font-weight: 300;
+      color: var(--warm-black);
+    }
+
+    .article p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Section Headers */
+    .section-header {
+      margin: 52px 0 28px;
+      padding-top: 52px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 600;
+      color: var(--warm-black);
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    /* Pull Quote */
+    .pull-quote {
+      margin: 44px -24px;
+      padding: 36px 48px;
+      background: var(--warm-black);
+      border-left: 3px solid var(--gold);
+      position: relative;
+    }
+
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 3vw, 22px);
+      color: var(--parchment) !important;
+      line-height: 1.5;
+      margin: 0 !important;
+    }
+
+    /* Wine Cards */
+    .wine-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .wine-card {
+      border: 1px solid var(--border);
+      background: var(--parchment);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wine-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .wine-card.barolo::before { background: var(--wine-red); }
+    .wine-card.chianti::before { background: var(--terracotta); }
+
+    .wine-card-region {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .wine-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--warm-black);
+      margin-bottom: 4px;
+    }
+
+    .wine-card-grape {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .wine-card p {
+      font-size: 17px;
+      margin-bottom: 0 !important;
+    }
+
+    .wine-verdict {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border: 1px solid;
+    }
+
+    .barolo .wine-verdict {
+      color: var(--wine-red);
+      border-color: var(--wine-red);
+    }
+
+    .chianti .wine-verdict {
+      color: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    /* Difficulty meter */
+    .difficulty-block {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      padding: 24px 32px;
+      margin: 32px 0;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .difficulty-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .difficulty-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .dot.filled {
+      background: var(--terracotta);
+    }
+
+    .difficulty-note {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    /* Cooking notes list */
+    .cooking-notes {
+      list-style: none;
+      margin: 28px 0;
+    }
+
+    .cooking-notes li {
+      padding: 16px 0 16px 28px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    .cooking-notes li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .cooking-notes li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .cooking-notes li strong {
+      font-weight: 500;
+      color: var(--warm-black);
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    /* Final verdict */
+    .verdict-block {
+      background: var(--warm-black);
+      padding: 40px 40px;
+      margin: 48px 0 0;
+      text-align: center;
+    }
+
+    .verdict-block .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .verdict-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(17px, 2.5vw, 21px);
+      color: var(--parchment) !important;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto !important;
+    }
+
+    /* Footer */
+    .article-footer {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .footer-cta {
+      font-family: 'Crimson Pro', serif;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .footer-cta em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .site-footer {
+      background: var(--warm-black);
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(201, 151, 58, 0.3);
+    }
+
+    .site-footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Ornament */
+    .ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 22px;
+      margin: 40px 0;
+      letter-spacing: 12px;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      .pull-quote { margin: 36px -24px; padding: 28px 28px; }
+      .wine-card { padding: 22px 22px; }
+      .difficulty-block { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-title">At the Table</div>
+    <div class="masthead-sub">Wine · Food · Culture · The Stories Behind Both</div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-issue">Issue No. 1 &nbsp;·&nbsp; Northern Italy</div>
+    <h1 class="hero-title">A Night in <em>Milan</em></h1>
+    <p class="hero-subtitle">Osso Buco, Saffron Risotto, and two Italian reds that had very different opinions about the whole thing</p>
+    <div class="hero-divider"><span>✦</span></div>
+  </div>
+
+  <!-- Photo -->
+  <div class="photo-block">
+    <div class="photo-container">
+      <div class="photo-frame">
+        <img src="/mnt/user-data/uploads/IMG_0513.jpeg" alt="Osso Buco alla Milanese with Saffron Risotto" />
+      </div>
+      <p class="photo-caption">Osso Buco alla Milanese with Risotto alla Milanese — plated and ready. That marrow bone is not optional.</p>
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="meta-bar">
+    <span class="meta-item"><strong>Dish</strong> &nbsp;Osso Buco alla Milanese</span>
+    <span class="meta-item"><strong>Region</strong> &nbsp;Lombardy & Piedmont, Italy</span>
+    <span class="meta-item"><strong>Difficulty</strong> &nbsp;7 / 10</span>
+    <span class="meta-item"><strong>Occasion</strong> &nbsp;Saturday with friends</span>
+  </div>
+
+  <!-- Article -->
+  <article class="article">
+
+    <p class="lead-paragraph">
+      There's a particular kind of Saturday that doesn't happen often enough. The kind where no one is in a hurry, something is braising low and slow on the stove, a bottle gets opened earlier than is probably responsible, and the kitchen becomes the whole point of the evening — not just the means to an end.
+    </p>
+
+    <p>
+      That was this past weekend. Two couples. Two husbands on cooking duty. One ambitious menu we had no business pulling off on the first try: <strong>Osso Buco alla Milanese</strong> with <strong>Saffron Risotto</strong>, paired against a Barolo from Piedmont and a Chianti from Tuscany. The goal was to eat well, drink better, and figure out which wine would claim the table by the end of the night.
+    </p>
+
+    <p>
+      Neither outcome was obvious going in. That's exactly what made it interesting.
+    </p>
+
+    <!-- Section: The Dish -->
+    <div class="section-header">
+      <span class="section-label">Part One</span>
+      <h2 class="section-title">The Dish — <em>And Where It Comes From</em></h2>
+    </div>
+
+    <p>
+      Osso Buco is Milan's most famous contribution to Italian cuisine. The name translates literally to "bone with a hole" — a reference to the cross-cut veal shank and the marrow-filled cavity at its center that is, frankly, one of the great pleasures of the dish. It's been on Milanese tables since at least the 19th century, and it's the kind of recipe that rewards patience and punishes shortcuts.
+    </p>
+
+    <p>
+      The traditional accompaniment is <strong>Risotto alla Milanese</strong> — risotto colored and perfumed with saffron, which has a long history in Lombard cooking dating back to the medieval spice trade routes that ran through northern Italy. The pairing isn't just tradition for tradition's sake. It's logical: the richness of the braise demands something starchy and slightly luxurious to anchor it, and the saffron's subtle earthiness bridges the two components in a way that feels almost architectural.
+    </p>
+
+    <p>
+      This is not a weeknight dinner. It is absolutely worth a Saturday.
+    </p>
+
+    <div class="pull-quote">
+      <p>"The smell alone — white wine, tomato, soffritto slowly perfuming the kitchen — is worth the effort before you've even taken a bite."</p>
+    </div>
+
+    <!-- Section: Making It -->
+    <div class="section-header">
+      <span class="section-label">Part Two</span>
+      <h2 class="section-title">Making It — <em>Honest Impressions</em></h2>
+    </div>
+
+    <p>We'd both cooked risotto before. Neither of us had cooked Osso Buco. Here's what we learned:</p>
+
+    <ul class="cooking-notes">
+      <li>
+        <strong>The braise is more forgiving than it looks.</strong>
+        Once you've seared the shanks and built the soffritto, the oven does the work. Give it two hours minimum. Don't rush it. The kitchen will smell extraordinary.
+      </li>
+      <li>
+        <strong>The risotto will humble you.</strong>
+        Not because any single step is technically difficult, but because of timing. Risotto waits for no one, and it needs 20–25 minutes of constant attention right when you're also trying to plate, pour wine, and have a conversation. Our solution: one person owns the risotto completely while the other handles everything else. Divide and conquer.
+      </li>
+      <li>
+        <strong>The gremolata is non-negotiable.</strong>
+        Lemon zest, parsley, garlic — five minutes of work. It cuts through the richness of the braise in a way that transforms the dish in the final bite. Don't skip it, don't rush it, don't substitute it.
+      </li>
+      <li>
+        <strong>The marrow is the reward.</strong>
+        Use a small spoon. Spread it on bread or stir it into the risotto. This is what the whole evening was building toward.
+      </li>
+    </ul>
+
+    <div class="difficulty-block">
+      <span class="difficulty-label">Difficulty</span>
+      <div class="difficulty-dots">
+        <div class="dot filled"></div>
+        <div class="dot filled"></div>
+        <div class="dot filled"></div>
+        <div class="dot filled"></div>
+        <div class="dot filled"></div>
+        <div class="dot filled"></div>
+        <div class="dot filled"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <span class="difficulty-note">7 of 10 — not hard, but unforgiving of distraction</span>
+    </div>
+
+    <!-- Section: The Wines -->
+    <div class="section-header">
+      <span class="section-label">Part Three</span>
+      <h2 class="section-title">The Wines — <em>Piedmont vs. Tuscany</em></h2>
+    </div>
+
+    <p>
+      The Barolo seemed like the obvious choice going in. It's the textbook pairing — Nebbiolo from Piedmont alongside a rich Lombard braise. The Chianti was there to push back. We opened both and poured them alongside each other throughout the meal. Here's the honest breakdown:
+    </p>
+
+    <div class="wine-cards">
+      <div class="wine-card barolo">
+        <div class="wine-card-region">Piedmont, Italy</div>
+        <div class="wine-card-name">2020 Domenico Clerico Barolo</div>
+        <div class="wine-card-grape">Nebbiolo &nbsp;·&nbsp; La Morra</div>
+        <p>Clerico is a modernist producer out of La Morra — one of the most celebrated communes in Barolo. This is the textbook pairing for Osso Buco, and it delivered on that promise: structured, complex, earthy, with the classic Nebbiolo rose-and-tar quality that opens slowly and keeps rewarding attention. The 2020 is a young wine and still has tannins that need either more time in the cellar or a long decant. By itself, it was the bottle of the evening. Against the braise, it felt like it was still holding something back.</p>
+        <span class="wine-verdict">The Better Bottle</span>
+      </div>
+
+      <div class="wine-card chianti">
+        <div class="wine-card-region">Tuscany, Italy</div>
+        <div class="wine-card-name">Chianti Classico</div>
+        <div class="wine-card-grape">Sangiovese &nbsp;·&nbsp; Chianti Classico DOCG</div>
+        <p>Technically from a different region entirely — Chianti is Tuscan, Osso Buco is Lombard — but we were curious. The Sangiovese is lighter, brighter, more fruit-forward than the Barolo. Less structured, more immediately generous. What surprised everyone was how well that worked specifically against this dish. The freshness and red cherry quality provided a different kind of contrast to the richness of the braise. Where the Barolo felt like a sparring partner, the Chianti felt like a conversation.</p>
+        <span class="wine-verdict">The Better Pairing</span>
+      </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <div class="verdict-block">
+      <div class="label">The Verdict</div>
+      <p>The Barolo is the more serious wine. The Chianti was the better evening companion — and the slight winner at the table. Sometimes the textbook pairing loses on points to something a little more easygoing. Worth remembering next time you're standing in the wine aisle.</p>
+    </div>
+
+    <!-- Closing -->
+    <div class="section-header">
+      <span class="section-label">The Bigger Picture</span>
+      <h2 class="section-title">Why This <em>Matters</em></h2>
+    </div>
+
+    <p>
+      What made this evening work wasn't just the food or the wine. It was the intentionality of it — choosing a dish with a story, understanding where it comes from, finding wines that have a logical relationship to the cuisine. It turns dinner into something closer to a small cultural experience.
+    </p>
+
+    <p>
+      Osso Buco has been on Milanese tables for over a century. The saffron in the risotto connects to medieval spice routes. The Barolo comes from Piedmont — a few hours from Milan — and has been paired with rich northern Italian food for generations. When you know that, you taste it differently. The meal earns a kind of context that a restaurant can't always give you.
+    </p>
+
+    <p>
+      That's what we're chasing with these evenings. And eventually, we'll chase it all the way to the source.
+    </p>
+
+    <div class="article-footer">
+      <p class="footer-tagline">Next on the list: Lombardy and Piedmont in person. But that's a future post.</p>
+      <p class="footer-cta">
+        If you enjoyed this, forward it to someone who'd appreciate a good Saturday in the kitchen.<br>
+        Have a wine or dish you'd like us to explore next? <em>Hit reply.</em>
+      </p>
+    </div>
+
+  </article>
+
+  <footer class="site-footer">
+    <p>At the Table &nbsp;·&nbsp; Wine, Food & Culture &nbsp;·&nbsp; Issue No. 1</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Detour That Made the Trip — At the Table</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a14;
+      --warm-black: #1e1e17;
+      --parchment: #f5f0e8;
+      --cream: #fafaf5;
+      --forest: #3a5a3a;
+      --forest-light: #5a7a5a;
+      --gold: #b8973a;
+      --gold-light: #d4b96a;
+      --muted: #7a7a6a;
+      --border: #ddd8c8;
+      --rust: #8a4a2a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+
+    /* Masthead */
+    .masthead {
+      background: var(--warm-black);
+      padding: 18px 0 14px;
+      text-align: center;
+      border-bottom: 2px solid var(--gold);
+    }
+    .masthead-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .masthead-sub {
+      font-family: 'Crimson Pro', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      background: var(--warm-black);
+      overflow: hidden;
+      padding: 64px 24px 56px;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 50%, rgba(58, 90, 58, 0.2) 0%, transparent 60%),
+        radial-gradient(ellipse at 75% 50%, rgba(138, 74, 42, 0.12) 0%, transparent 60%);
+    }
+    .hero-issue {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 700;
+      color: var(--parchment);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-subtitle {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(15px, 2.5vw, 19px);
+      color: var(--muted);
+      max-width: 560px;
+      margin: 18px auto 0;
+      line-height: 1.5;
+    }
+    .hero-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 36px auto 0;
+      max-width: 300px;
+    }
+    .hero-divider::before,
+    .hero-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+    .hero-divider span { color: var(--gold); font-size: 18px; }
+
+    /* Photo block */
+    .photo-block {
+      background: var(--warm-black);
+      padding: 0 0 48px;
+      text-align: center;
+    }
+    .photo-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .photo-frame img {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(184, 151, 58, 0.3);
+    }
+    .photo-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* Meta bar */
+    .meta-bar {
+      background: var(--parchment);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .meta-item strong { color: var(--forest); font-weight: 600; }
+
+    /* Article */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+    .lead-paragraph {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(19px, 3vw, 23px);
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--warm-black);
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .article p {
+      margin-bottom: 24px;
+      font-weight: 300;
+      color: var(--warm-black);
+    }
+
+    /* Section headers */
+    .section-header {
+      margin: 52px 0 28px;
+      padding-top: 52px;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 600;
+      color: var(--warm-black);
+      line-height: 1.2;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--forest);
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 44px -24px;
+      padding: 36px 48px;
+      background: var(--warm-black);
+      border-left: 3px solid var(--forest-light);
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(17px, 3vw, 21px);
+      color: var(--parchment) !important;
+      line-height: 1.55;
+      margin: 0 !important;
+    }
+
+    /* Sandwich card */
+    .sandwich-card {
+      border: 1px solid var(--border);
+      background: var(--parchment);
+      padding: 28px 32px;
+      margin: 32px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .sandwich-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--forest);
+    }
+    .sandwich-card-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .sandwich-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--warm-black);
+      margin-bottom: 8px;
+    }
+    .sandwich-card-ingredients {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+    .sandwich-card p {
+      font-size: 17px;
+      margin-bottom: 0 !important;
+    }
+
+    /* Owner spotlight */
+    .owner-block {
+      background: var(--parchment);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      padding: 32px 36px;
+      margin: 40px 0;
+    }
+    .owner-block-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .owner-block-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--warm-black);
+      margin-bottom: 16px;
+    }
+    .owner-block p {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+    .owner-block p:last-child { margin-bottom: 0; }
+
+    /* Practical info */
+    .practical-block {
+      background: var(--warm-black);
+      padding: 32px 36px;
+      margin: 40px 0;
+    }
+    .practical-block-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .practical-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      align-items: baseline;
+    }
+    .practical-key {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 90px;
+    }
+    .practical-val {
+      font-family: 'Crimson Pro', serif;
+      font-size: 17px;
+      color: var(--parchment);
+      font-weight: 300;
+    }
+
+    /* Verdict */
+    .verdict-block {
+      background: var(--forest);
+      padding: 40px;
+      margin: 48px 0 0;
+      text-align: center;
+    }
+    .verdict-block .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .verdict-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(17px, 2.5vw, 21px);
+      color: var(--parchment) !important;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto !important;
+    }
+
+    .ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 20px;
+      margin: 40px 0;
+      letter-spacing: 12px;
+      opacity: 0.5;
+    }
+
+    /* Footer */
+    .article-footer {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .footer-cta {
+      font-family: 'Crimson Pro', serif;
+      font-size: 16px;
+      color: var(--muted);
+    }
+    .footer-cta em { font-style: italic; color: var(--forest); }
+
+    .site-footer {
+      background: var(--warm-black);
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(184, 151, 58, 0.3);
+    }
+    .site-footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .pull-quote { margin: 36px -24px; padding: 28px 28px; }
+      .sandwich-card, .owner-block, .practical-block { padding: 22px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-title">At the Table</div>
+    <div class="masthead-sub">Wine · Food · Culture · The Stories Behind Both</div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-issue">Issue No. 2 &nbsp;·&nbsp; Small Town Finds</div>
+    <h1 class="hero-title">The Detour That <em>Made the Trip</em></h1>
+    <p class="hero-subtitle">A tornado warning, a college visit, and one sandwich shop in Hillsdale, Michigan that earned a return trip</p>
+    <div class="hero-divider"><span>✦</span></div>
+  </div>
+
+  <div class="photo-block">
+    <div class="photo-container">
+      <div class="photo-frame">
+        <img src="/mnt/user-data/uploads/060cd8efc582412286730150567d1faaf9095079.png" alt="Handmade Sandwiches menu board, Hillsdale Michigan" />
+      </div>
+      <p class="photo-caption">The menu at Handmade — Hillsdale Street, Hillsdale, Michigan. The Signature Sandies board is top right. You want the Handie Sandie.</p>
+    </div>
+  </div>
+
+  <div class="meta-bar">
+    <span class="meta-item"><strong>Restaurant</strong> &nbsp;Handmade Sandwiches & Beverages</span>
+    <span class="meta-item"><strong>Location</strong> &nbsp;Hillsdale, Michigan</span>
+    <span class="meta-item"><strong>Type</strong> &nbsp;Mom & Pop Discovery</span>
+    <span class="meta-item"><strong>Verdict</strong> &nbsp;Go Back Soon</span>
+  </div>
+
+  <article class="article">
+
+    <p class="lead-paragraph">
+      We didn't come to Hillsdale, Michigan for the food. We came because our daughter is going to be playing basketball at Hillsdale College in 2027, and we wanted to see the place — the campus, the town, the life she'll be stepping into. What we didn't expect was to leave already planning a return trip for the sandwich alone.
+    </p>
+
+    <p>
+      The visit started with a 1:10 AM wake-up call. Tornado sirens. We jumped out of bed in our Airbnb, pulled up the weather channel, and watched a tornado track a few miles south of town until around 2 AM before we could settle back down. Not exactly the relaxed college visit we'd imagined. By morning, we needed coffee, food, and something to restore our faith in the day.
+    </p>
+
+    <p>
+      Handmade delivered all three.
+    </p>
+
+    <div class="pull-quote">
+      <p>"There are places you walk into and know immediately that someone cared — about the space, the menu, and the people coming through the door. Handmade is one of those places."</p>
+    </div>
+
+    <div class="section-header">
+      <span class="section-label">The Place</span>
+      <h2 class="section-title">What Handmade <em>Actually Is</em></h2>
+    </div>
+
+    <p>
+      Handmade Sandwiches & Beverages sits on Hillsdale Street in a building that was renovated from the ground up by its owner. The space is clean and modern with a small-town warmth that a lot of newer restaurants spend a lot of money trying to fake and usually can't quite pull off. The ordering setup is straightforward — you place your order at the front, make your way to the back to pay, and pass the cookie case on the way. Consider yourself warned about the cookie case.
+    </p>
+
+    <p>
+      The menu breaks down into Create Your Own, Signature Sandies, and Shareables — plus soups, hand-dipped ice cream, and coffee. Everything is made to order. The meat is hand-sliced. The bread is fresh. These aren't marketing claims — you can taste the difference.
+    </p>
+
+    <p>
+      The vibe is exactly what a great small-town lunch spot should be: a mix of college students, local regulars, and people like us who wandered in and immediately felt at home. Someone behind the counter called a regular by name before they'd finished walking through the door.
+    </p>
+
+    <div class="section-header">
+      <span class="section-label">What We Ordered</span>
+      <h2 class="section-title">The Handie Sandie — <em>A Case Study</em></h2>
+    </div>
+
+    <div class="sandwich-card">
+      <div class="sandwich-card-label">Signature Sandie</div>
+      <div class="sandwich-card-name">The Handie Sandie</div>
+      <div class="sandwich-card-ingredients">Ham · Turkey · Bacon · Horseradish Cheddar · Herb Mayo</div>
+      <p>This sandwich is better than it has any right to be. On paper it's a classic deli combination — but the execution is what separates it. The horseradish in the cheddar provides a slow, building heat that doesn't overwhelm so much as it keeps you honest. The herb mayo is doing serious work: bright, fresh, and aromatic in a way that lifts every bite. Fresh ingredients throughout — you can taste that nothing came out of a bag. The balance of spice, richness, and herb is the kind of thing that seems simple until you try to replicate it at home and realize how carefully it was calibrated.</p>
+    </div>
+
+    <p>
+      One note from a fellow Tripadvisor traveler worth echoing: there are no prices on the wall menu. The sandwich runs around $17 for a 14-inch, which caught at least one visitor off guard. It's on the higher end for a small Michigan town, but in the context of the quality and portion size, it's fair. Just know going in.
+    </p>
+
+    <div class="section-header">
+      <span class="section-label">The Story Behind It</span>
+      <h2 class="section-title">A Family That <em>Builds Things</em></h2>
+    </div>
+
+    <div class="owner-block">
+      <div class="owner-block-label">Owner Spotlight</div>
+      <div class="owner-block-name">Derek Spiteri</div>
+      <p>Derek Spiteri opened Handmade after spending a year renovating the old Oakley building on Hillsdale Street. He's a Hillsdale native — son of John Spiteri, who has run Checker Records in town for decades — and part of a family with four generations of small business ownership in the same community. A great-grandfather's cash register from an old shoe store sits behind the counter at Handmade as a reminder of where it all started.</p>
+      <p>Derek's vision was a place that served both the college community and the town — a quality lunch stop with craft beverages and a menu built around great ingredients rather than shortcuts. That vision has held. Handmade was voted one of the top 10 sub shops in Michigan by MLive, has weathered a pandemic without cutting staff, and has become one of those rare places where both students and longtime locals feel like regulars. "It's a nice mix of the college and town communities coming together," one Hillsdale professor told the college newspaper. "Derek is so passionate about his sandwiches."</p>
+    </div>
+
+    <p>
+      There's something worth pausing on here. Hillsdale is a small town, and Derek Spiteri didn't have to build something this good. He could have done something adequate and been fine. Instead he spent a year renovating a building, hand-slices the meat, sources quality ingredients, and clearly still shows up every day caring about the result. That's not nothing. That's the whole thing, actually.
+    </p>
+
+    <div class="ornament">· · ·</div>
+
+    <div class="section-header">
+      <span class="section-label">If You Go</span>
+      <h2 class="section-title">The <em>Practical Details</em></h2>
+    </div>
+
+    <div class="practical-block">
+      <div class="practical-block-label">Handmade Sandwiches & Beverages</div>
+      <div class="practical-row"><span class="practical-key">Address</span><span class="practical-val">78 Hillsdale Street, Hillsdale, Michigan</span></div>
+      <div class="practical-row"><span class="practical-key">Hours</span><span class="practical-val">Mon, Wed–Thu 11am–7pm · Fri–Sat 10:30am–7pm (Sat until 6pm) · Sun 11am–2:30pm · Closed Tuesday</span></div>
+      <div class="practical-row"><span class="practical-key">Order</span><span class="practical-val">At the front counter — make your way to the back to pay</span></div>
+      <div class="practical-row"><span class="practical-key">Must Order</span><span class="practical-val">The Handie Sandie. Then walk slowly past the cookie case.</span></div>
+      <div class="practical-row"><span class="practical-key">Note</span><span class="practical-val">No prices on the wall menu — plan for roughly $15–18 for a signature sandwich</span></div>
+    </div>
+
+    <div class="verdict-block">
+      <div class="label">The Verdict</div>
+      <p>We came to Hillsdale to see a college campus. We're going back for the sandwich. That's the highest compliment a small-town lunch spot can earn from a one-time visitor — the immediate desire to be a regular.</p>
+    </div>
+
+    <div class="section-header">
+      <span class="section-label">Why This Matters</span>
+      <h2 class="section-title">The Case for <em>Eating Local</em></h2>
+    </div>
+
+    <p>
+      One of the things we're chasing with these posts is the experience you can't replicate at a chain, a hotel restaurant, or anywhere that optimizes for consistency over character. Handmade is the argument for always asking a local where to eat instead of opening a national review app.
+    </p>
+
+    <p>
+      Derek Spiteri built something that belongs to Hillsdale. The great-grandfather's cash register behind the counter isn't a prop — it's a statement about continuity, about showing up for a community across generations. You taste that kind of intention in the food, even if you couldn't quite articulate why.
+    </p>
+
+    <p>
+      We hope our daughter eats there every week.
+    </p>
+
+    <div class="article-footer">
+      <p class="footer-tagline">Next visit: back to Hillsdale when she commits — and we'll be trying the rest of the menu.</p>
+      <p class="footer-cta">
+        Found a mom and pop spot worth the detour? <em>Hit reply and tell us about it.</em><br>
+        If you enjoyed this, forward it to someone planning a road trip.
+      </p>
+    </div>
+
+  </article>
+
+  <footer class="site-footer">
+    <p>At the Table &nbsp;·&nbsp; Wine, Food & Culture &nbsp;·&nbsp; Issue No. 2</p>
+  </footer>
+
+</body>
+</html>
